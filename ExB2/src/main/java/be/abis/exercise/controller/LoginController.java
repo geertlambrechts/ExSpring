@@ -46,13 +46,9 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/switchtoallcourses")
-	public String switchToAllCourses(Model model) {
-		return "redirect:/allCourses";
-	}
-	
+
 	@GetMapping("/allCourses")
-	public String showAllCourses(Model model) {
-		return "allCourses";
+	public String showallCourses(Model model) {
+		return "showallcourses";
 	}
 }
