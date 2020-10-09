@@ -15,14 +15,14 @@ public class LoginController {
 		@Autowired
 		PersonRepository personRepository;
 		
-		@GetMapping("/login")
+		@GetMapping("/")
 		public String showLogin(Model model) {
 			Login login = new Login();
 			model.addAttribute("login",login);
 			return "login";
 		}
 		
-		@PostMapping("/login")
+		@PostMapping("/")
 		public String verifyLogin(Model model, Login login) {
 			String returnPage = "login";
 			if (personRepository.findPerson(login.getEmail(), login.getPassword()) != null) {
