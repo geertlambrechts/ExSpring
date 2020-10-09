@@ -75,13 +75,4 @@ public class AbisTrainingService implements TrainingService {
 
 	}
 
-	@Override
-	public boolean verifyLogin(Login login) {
-		return true;
-	}
-
-
-
-
-
 }

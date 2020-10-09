@@ -7,19 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import be.abis.exercise.model.Login;
-import be.abis.exercise.model.Person;
-import be.abis.exercise.service.*;
+import be.abis.exercise.repository.PersonRepository;
 
 @Controller
 public class LoginController {	
 	
 		@Autowired
-		TrainingService trainingService;
+		PersonRepository personRepository;
 		
-		@PostMapping("/")
+		@GetMapping("/login")
+		public String showLogin(Model model) {
+			Login login = new Login();
+			model.addAttribute("login",login);
+			return "login";
+		}
+		
+		@PostMapping("/login")
 		public String verifyLogin(Model model, Login login) {
 			String returnPage = "login";
-			if (trainingService.verifyLogin(login)) {
+			if (personRepository.findPerson(login.getEmail(), login.getPassword()) != null) {
 				returnPage = "welcome";
 			}
 			return returnPage;

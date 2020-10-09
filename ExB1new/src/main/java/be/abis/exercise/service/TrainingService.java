@@ -24,5 +24,4 @@ public interface TrainingService {
 	
 	public CourseService getCourseService();
 	public void setCourseService(CourseService courseService);
-	public boolean verifyLogin(Login login);
 }
