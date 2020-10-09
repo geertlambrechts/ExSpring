@@ -39,4 +39,10 @@ public class LoginController {
 		model.addAttribute("person", person);
 		return "welcome";
 	}
+	
+	@PostMapping("/welcome")
+	public String welcomeLogout(Model model) {
+		person=null;
+		return "redirect:/";
+	}
 }

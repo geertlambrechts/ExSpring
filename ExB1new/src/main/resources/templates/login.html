@@ -5,7 +5,7 @@
 <body>
     <form action="#" method="post" th:action="@{/}" th:object="${login}">
             <h2>Login</h2>
-            <hr/>
+            <br/>
             <div>
                 <label>Email</label>
                 <input th:field="*{email}" type="text" placeholder="Email">
@@ -14,6 +14,8 @@
                 <label>Password</label>
                 <input th:field="*{password}" type="text" placeholder="Password">
             </div>
+            <br> 
+            <br> 
             <div>
                 <div>
                     <button type="submit">Submit</button>
