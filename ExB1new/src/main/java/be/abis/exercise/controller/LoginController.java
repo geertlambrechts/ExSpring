@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import be.abis.exercise.model.Login;
+import be.abis.exercise.model.Person;
 import be.abis.exercise.repository.PersonRepository;
 
 @Controller
 public class LoginController {	
+	    Person person;
 	
 		@Autowired
 		PersonRepository personRepository;
@@ -25,9 +27,16 @@ public class LoginController {
 		@PostMapping("/")
 		public String verifyLogin(Model model, Login login) {
 			String returnPage = "login";
-			if (personRepository.findPerson(login.getEmail(), login.getPassword()) != null) {
+			person = personRepository.findPerson(login.getEmail(), login.getPassword());
+			if (person != null) {
 				returnPage = "welcome";
 			}
 			return returnPage;
+		}
+		
+		@GetMapping("/welcome")
+		public String showName(Model model) {
+			model.addAttribute("person",person);
+			return "welcome";
 		}
 }
