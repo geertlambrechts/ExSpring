@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">>
+<head>
+   <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome <span th:text="${person.firstName}"></span></h1>
+    <br>
+    <a href="#" th:href="@{/switchtoallcourses}">Search for courses</a><br>
+    <br>
+    <a href="#">person administration</a><br>
+    <br> 
+    <br> 
+    <form action="#" method="post" th:action="@{/logout}" th:object="${person}">
+    	<button type="submit">LOGOUT</button>
+    </form>
+</body>
+</html>
