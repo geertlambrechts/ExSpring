@@ -1,0 +1,26 @@
+<html>
+<head>
+   <title>Login</title>
+</head>
+<body>
+    <form action="#" method="post" th:action="@{/verifyLogin}" th:object="${Login}">
+            <h2>Login</h2>
+            <hr/>
+            <div>
+                <label>Email</label>
+                <input th:field="*{email}" type="text" placeholder="Email">
+            </div>
+            <div>
+                <label>Password</label>
+                <input th:field="*{password}" type="text" placeholder="Password">
+            </div>
+            <div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>	
+</body>
+</html>
