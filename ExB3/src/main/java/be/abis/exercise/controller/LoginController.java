@@ -26,6 +26,7 @@ public class LoginController {
 	@Autowired
 	CourseRepository courseRepository;
 
+	
 	@GetMapping("/")
 	public String showLogin(Model model) {
 		Login login = new Login();
@@ -139,7 +140,7 @@ public class LoginController {
 			}
 			else {
 				personRepository.changePassword(person, personPassword.getPassword());
-				info = "password updated to " + personPassword.getPassword();
+				info = "password updated";
 			}
 		}
 		catch (IOException ioE) {
