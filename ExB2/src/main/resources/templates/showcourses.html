@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>List Courses</title>
+</head>
+<body>
+	<h1>List courses</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Short Title</th>
+				<th>Long Title</th>
+				<th>Number of Days</th>
+				<th>Price per Day</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="course : ${courselist}">
+				<td th:text="${course.courseId}"></td>
+				<td th:text="${course.shortTitle}"></td>
+				<td th:text="${course.longTitle}"></td>
+				<td th:text="${course.numberOfDays}"></td>
+				<td th:text="${course.pricePerDay}"></td>
+			</tr>
+		</tbody>
+	</table>	
+	<br> 
+    <br> 
+    <form action="#" method="post" th:action="@{/backToWelcome}">
+    	<button type="submit">BACK</button>
+    </form>	
+</body>
+</html>

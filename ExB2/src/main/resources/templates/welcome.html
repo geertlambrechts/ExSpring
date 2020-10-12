@@ -5,12 +5,12 @@
 <body>
     <h1>Welcome <span th:text="${person.firstName}"></span></h1>
     <br>
-    <a href="#" th:href="@{/allCourses}">Search for courses</a><br>
+    <a href="#" th:href="@{/searchForCourses}">Search for courses</a><br>
     <br>
     <a href="#">person administration</a><br>
     <br> 
     <br> 
-    <form action="#" method="post" th:action="@{/logout}" th:object="${person}">
+    <form action="#" method="post" th:action="@{/logout}">
     	<button type="submit">LOGOUT</button>
     </form>
 </body>
