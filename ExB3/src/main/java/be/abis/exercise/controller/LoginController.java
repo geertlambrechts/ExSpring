@@ -2,7 +2,9 @@ package be.abis.exercise.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -181,7 +183,49 @@ public class LoginController {
 		return "showpersons";
 	}
 
+	@GetMapping("/newperson")
+	public String newPerson(Model model) {
+		System.out.println("newperson");
+		model.addAttribute("newPerson", new Person());
+		model.addAttribute("info", new String());
+		model.addAttribute("languageOptions",getLanguageMap());
+		return "newperson";
+	}
 	
 
+	@PostMapping("/insertNewPerson")
+	public String insertNewPerson(Model model, Person newPerson) {
+		String info = new String();
+		System.out.println("in insertNewPerson");
+		Person personFound = personRepository.findPerson(newPerson.getPersonId());
+		if (personFound == null) {
+			try {
+				personRepository.addPerson(newPerson);
+				info = "person " + newPerson.getFirstName() + " " + newPerson.getLastName() + " added to DB";
+				System.out.println("added Person=" + newPerson);
+				newPerson = new Person();
+			}
+			catch (IOException ioE){
+				info = "error adding person to DB : " + ioE.getMessage();
+			}
+		} 
+		else {
+			info = "Person with personId=" + newPerson.getPersonId() + " exists already";
+		}
+		model.addAttribute("newPerson", newPerson);
+		model.addAttribute("info", info);
+		model.addAttribute("languageOptions",getLanguageMap());
+		return "newperson";
+	}
+	
+	public Map<String, String> getLanguageMap() {
+		Map<String, String> languageMap = new HashMap<>();
+		languageMap.put("nl", "Dutch");
+		languageMap.put("fr", "French");
+		languageMap.put("en", "English");
+		languageMap.put("es", "Spanish");
+		languageMap.put("de", "German");
+		return languageMap;
+	}
 	
 }
