@@ -150,4 +150,37 @@ public class LoginController {
 		return "changepassword";
 	}
 	
+
+	@GetMapping("/searchforpersons")
+	public String searchForPersons(Model model) {
+		System.out.println("searchforpersons");
+		model.addAttribute("personById", new Person());
+		return "searchforpersons";
+	}
+
+	
+	@PostMapping("/showAllPersons")
+	public String showAllPersons(Model model) {
+		List<Person> persons = personRepository.getAllPersons();
+		model.addAttribute("personlist", persons);
+		return "showpersons";
+	}
+
+	@PostMapping("/findPersonById")
+	public String findPersonById(Model model, Person personById) {
+		int personId = personById.getPersonId();
+		Person personFound = personRepository.findPerson(personId);
+			
+		List<Person> persons = new ArrayList<Person>();
+		if (personFound != null) {
+			persons.add(personFound);
+		}
+
+		model.addAttribute("personlist", persons);
+		return "showpersons";
+	}
+
+	
+
+	
 }

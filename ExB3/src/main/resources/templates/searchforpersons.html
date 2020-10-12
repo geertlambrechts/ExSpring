@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search for Persons</title>
+</head>
+<body>
+	<h1>Search for Persons</h1>
+	<form action="#" method="post" th:action="@{/showAllPersons}"> 
+		<button type="submit">Show all Persons</button>
+    </form>
+    <br> 
+     <form action="#" method="post" th:action="@{/findPersonById}" th:object="${personById}">
+     	<input type="number" th:field="*{personId}"> 
+		<button type="submit">Find by id</button>
+    </form>    
+
+</body>
+</html>
