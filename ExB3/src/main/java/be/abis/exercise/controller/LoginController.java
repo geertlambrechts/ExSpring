@@ -1,5 +1,6 @@
 package be.abis.exercise.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,8 +74,8 @@ public class LoginController {
 	
 
 	@PostMapping("/findCourseById")
-	public String findCourseById(Model model, Course course) {
-		String courseid = course.getCourseId();
+	public String findCourseById(Model model, Course courseById) {
+		String courseid = courseById.getCourseId();
 		List<Course> courses = new ArrayList<Course>();
 		try {
 			int myId = Integer.parseInt(courseid);
@@ -110,4 +111,43 @@ public class LoginController {
 		System.out.println("in backToWelcome");
 		return "redirect:/welcome";
 	}
+	
+
+	@GetMapping("/personadministration")
+	public String personAdministration(Model model) {
+		System.out.println("personadministration");
+		return "personadministration";
+	}
+	
+
+	@GetMapping("/changepassword")
+	public String changePassword(Model model) {
+		System.out.println("changepassword get");
+		model.addAttribute("personPassword", new Person());
+		model.addAttribute("info", new String());
+		return "changepassword";
+	}
+
+	@PostMapping("/updatepassword")
+	public String updatepassword (Model model, Person personPassword) {
+		String info = new String();
+		try {
+			System.out.println("updatepassword post");
+			
+			if (personPassword.getPassword().equals("")) {
+				info = "password can not be empty";
+			}
+			else {
+				personRepository.changePassword(person, personPassword.getPassword());
+				info = "password updated to " + personPassword.getPassword();
+			}
+		}
+		catch (IOException ioE) {
+			info = "error updating password : " + ioE.getMessage();
+		}
+		model.addAttribute("personPassword", new Person());
+		model.addAttribute("info", info);
+		return "changepassword";
+	}
+	
 }
