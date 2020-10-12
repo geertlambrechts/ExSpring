@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Person administration</h1>
+	<form action="#" method="post" th:action="@{/changePassword}"> 
+		<button type="submit">Change your own password</button>
+    </form>
+    <br>     
+   	<form action="#" method="post" th:action="@{/searchForPerson}"> 
+		<button type="submit">search for person</button>
+    </form>
+    <br> 
+   	<form action="#" method="post" th:action="@{/addNewPerson}"> 
+		<button type="submit">Add a new person</button>
+    </form>
+    <br> 
+   	<form action="#" method="post" th:action="@{/removePerson}"> 
+		<button type="submit">Remove a person</button>
+    </form>    
+
+</body>
+</html>
