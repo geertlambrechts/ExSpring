@@ -228,4 +228,32 @@ public class LoginController {
 		return languageMap;
 	}
 	
+
+	@GetMapping("/removeperson")
+	public String removePerson(Model model) {
+		System.out.println("in removeperson");
+		model.addAttribute("personToRemove", new Person());
+		model.addAttribute("info", new String());
+		return "removeperson";
+	}
+	
+
+	@PostMapping("/removePerson")
+	public String removePerson(Model model, Person personToRemove) {
+		String info = new String();
+		System.out.println("in removePerson post");
+		Person personFound = personRepository.findPerson(personToRemove.getPersonId());
+		System.out.println("after");
+		if (personFound != null) {
+				personRepository.deletePerson(personToRemove.getPersonId());
+				info = "person " + personFound.getFirstName() + " " + personFound.getLastName() + " removed from DB";
+			}
+		else {
+			info = "Person with personId=" + personToRemove.getPersonId() + " does not exist in DB";
+		}
+		model.addAttribute("personToRemove", personToRemove);
+		model.addAttribute("info", info);
+		return "removeperson";
+	}
+	
 }
