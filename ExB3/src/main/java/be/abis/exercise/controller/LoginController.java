@@ -15,19 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import be.abis.exercise.model.Course;
 import be.abis.exercise.model.Login;
 import be.abis.exercise.model.Person;
-import be.abis.exercise.repository.CourseRepository;
-import be.abis.exercise.repository.PersonRepository;
+import be.abis.exercise.service.*;
+
+
 
 @Controller
 public class LoginController {
 	Person person;
 
 	@Autowired
-	PersonRepository personRepository;
-	
-	@Autowired
-	CourseRepository courseRepository;
-
+	TrainingService trainingService;
 	
 	@GetMapping("/")
 	public String showLogin(Model model) {
@@ -39,7 +36,7 @@ public class LoginController {
 	@PostMapping("/")
 	public String verifyLogin(Model model, Login login) {
 		String returnPage = "login";
-		person = personRepository.findPerson(login.getEmail(), login.getPassword());
+		person = trainingService.findPerson(login.getEmail(), login.getPassword());
 		if (person != null) {
 			returnPage = "redirect:/welcome";
 		}
@@ -70,7 +67,7 @@ public class LoginController {
 
 	@PostMapping("/showAllCourses")
 	public String showAllCourses(Model model) {
-		List<Course> courses = courseRepository.findAllCourses();
+		List<Course> courses = trainingService.getCourseService().findAllCourses();
 		model.addAttribute("courselist", courses);
 		return "showcourses";
 	}
@@ -82,7 +79,7 @@ public class LoginController {
 		List<Course> courses = new ArrayList<Course>();
 		try {
 			int myId = Integer.parseInt(courseid);
-			Course courseFound = courseRepository.findCourse(myId);
+			Course courseFound = trainingService.getCourseService().findCourse(myId);
 			if (courseFound != null) {
 				courses.add(courseFound);
 			}
@@ -99,7 +96,7 @@ public class LoginController {
 		String shortTitle = course.getShortTitle();
 		List<Course> courses = new ArrayList<Course>();
 
-		Course courseFound = courseRepository.findCourse(shortTitle);
+		Course courseFound = trainingService.getCourseService().findCourse(shortTitle);
 		if (courseFound != null) {
 			courses.add(courseFound);
 		}
@@ -141,7 +138,7 @@ public class LoginController {
 				info = "password can not be empty";
 			}
 			else {
-				personRepository.changePassword(person, personPassword.getPassword());
+				trainingService.changePassword(person, personPassword.getPassword());
 				info = "password updated";
 			}
 		}
@@ -164,7 +161,7 @@ public class LoginController {
 	
 	@PostMapping("/showAllPersons")
 	public String showAllPersons(Model model) {
-		List<Person> persons = personRepository.getAllPersons();
+		List<Person> persons = trainingService.getAllPersons();
 		model.addAttribute("personlist", persons);
 		return "showpersons";
 	}
@@ -172,7 +169,7 @@ public class LoginController {
 	@PostMapping("/findPersonById")
 	public String findPersonById(Model model, Person personById) {
 		int personId = personById.getPersonId();
-		Person personFound = personRepository.findPerson(personId);
+		Person personFound = trainingService.findPerson(personId);
 			
 		List<Person> persons = new ArrayList<Person>();
 		if (personFound != null) {
@@ -197,10 +194,10 @@ public class LoginController {
 	public String insertNewPerson(Model model, Person newPerson) {
 		String info = new String();
 		System.out.println("in insertNewPerson");
-		Person personFound = personRepository.findPerson(newPerson.getPersonId());
+		Person personFound = trainingService.findPerson(newPerson.getPersonId());
 		if (personFound == null) {
 			try {
-				personRepository.addPerson(newPerson);
+				trainingService.addPerson(newPerson);
 				info = "person " + newPerson.getFirstName() + " " + newPerson.getLastName() + " added to DB";
 				System.out.println("added Person=" + newPerson);
 				newPerson = new Person();
@@ -242,10 +239,10 @@ public class LoginController {
 	public String removePerson(Model model, Person personToRemove) {
 		String info = new String();
 		System.out.println("in removePerson post");
-		Person personFound = personRepository.findPerson(personToRemove.getPersonId());
+		Person personFound = trainingService.findPerson(personToRemove.getPersonId());
 		System.out.println("after");
 		if (personFound != null) {
-				personRepository.deletePerson(personToRemove.getPersonId());
+				trainingService.deletePerson(personToRemove.getPersonId());
 				info = "person " + personFound.getFirstName() + " " + personFound.getLastName() + " removed from DB";
 			}
 		else {
