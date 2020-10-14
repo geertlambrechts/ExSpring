@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Remove Person</title>
+</head>
+<body>
+	<h1>Remove a person</h1>
+	<br>
+	<form action="#" method="post" th:action="@{/removePerson}"
+		th:object="${personToRemove}">
+		<p>
+			personId <input th:field="*{personId}" type="text"
+				placeholder="PersonId">
+		</p>
+		<p>
+			<button type="submit">Remove</button>
+		</p>
+
+	</form>
+	<br>
+	<p>
+		<span th:text="${info}"></span>
+	</p>
+	<br>
+	<br>
+	<form action="#" method="post" th:action="@{/backToWelcome}">
+		<button type="submit">BACK</button>
+	</form>
+</body>
+</html>

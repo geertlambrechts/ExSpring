@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Person administration</title>
+</head>
+<body>
+	<h1>Person administration</h1>
+	<br>
+    <a href="http://localhost:8085/login/changepassword">Change your password</a><br>
+ 	<br>
+    <a href="http://localhost:8085/login/searchforpersons">Search for persons</a><br>	
+    <br>
+    <a href="http://localhost:8085/login/newperson">Add a new person</a><br>	
+    <br>
+    <a href="http://localhost:8085/login/removeperson">remove a person</a><br>
+    <br>
+    <form action="#" method="post" th:action="@{/backToWelcome}">
+    	<button type="submit">BACK</button>
+    </form>	
+
+</body>
+</html>

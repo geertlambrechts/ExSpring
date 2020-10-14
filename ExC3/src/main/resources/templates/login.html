@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login</title>
+</head>
+<body>
+	<form action="#" method="post" th:action="@{/}" th:object="${login}">
+		<h2>Login</h2>
+		<br />
+		<div>
+				<label>Email</label> <input th:field="*{email}" type="text" placeholder="Email"> 
+				 <span style="color:red" th:errors="*{email}"></span> 
+		</div>
+
+		<div>
+			<label>Password</label> <input th:field="*{password}" type="password"
+				placeholder="Password">
+		</div>
+		<br> <br>
+		<div>
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+		</div>
+
+	</form>
+	</div>
+</body>
+</html>
