@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import be.abis.exercise.model.Course;
@@ -180,7 +181,7 @@ public class LoginController {
 	}
 
 	@PostMapping("/insertNewPerson")
-	public String insertNewPerson(Model model, @Valid Person newPerson, BindingResult bindingResult) {
+	public String insertNewPerson(Model model, @Valid @ModelAttribute("newPerson")  Person newPerson, BindingResult bindingResult) {
 		System.out.println("in insertNewPerson");
 		if (bindingResult.hasErrors()) {
 			System.out.println("in hasErrors");

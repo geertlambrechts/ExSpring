@@ -1,18 +1,22 @@
 package be.abis.exercise.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 public class Person {
 	
 	private int personId;
-	@NotBlank( message="firstname is required")
+	@NotBlank( message="First Name is required")
 	private String firstName;
 	
 	private String lastName;
 	private int age;
+	@NotBlank( message="Email Address is required")
 	private String emailAddress;
+	@NotBlank( message="password is required")
 	private String password;
 	private String language;
+	@Valid
 	private Company company;
 	
 	
