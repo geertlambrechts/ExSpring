@@ -1,21 +1,33 @@
 package be.abis.exercise.model;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class Person {
 	
 	private int personId;
+	
 	@NotBlank( message="First Name is required")
 	private String firstName;
 	
 	private String lastName;
+	
+	@Min(18)
 	private int age;
+	
 	@NotBlank( message="Email Address is required")
+	@Email (message="not a valid email address")
 	private String emailAddress;
+	
 	@NotBlank( message="password is required")
+	@Size(min = 3, message="password must have a minimum length of characters")
 	private String password;
+	
 	private String language;
+	
 	@Valid
 	private Company company;
 	
