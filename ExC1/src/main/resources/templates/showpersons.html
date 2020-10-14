@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Persons</title>
+</head>
+<body>
+	<h1>List Persons</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email address</th>
+				<th>Language</th>
+				<th>Age</th>
+				<th>Company</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="person : ${personlist}">
+				<td th:text="${person.personId}"></td>
+				<td th:text="${person.firstName}"></td>
+				<td th:text="${person.lastName}"></td>
+				<td th:text="${person.emailAddress}"></td>
+				<td th:text="${person.language}"></td>
+				<td th:text="${person.age}"></td>
+				<td th:text="${person.company.name}"></td>
+			</tr>
+		</tbody>
+	</table>	
+	<br> 
+    <br> 
+    <form action="#" method="post" th:action="@{/backToWelcome}">
+    	<button type="submit">BACK</button>
+    </form>	
+</body>
+</html>

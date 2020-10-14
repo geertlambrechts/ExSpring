@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search for Courses</title>
+</head>
+<body>
+	<h1>Search for Courses</h1>
+	<form action="#" method="post" th:action="@{/showAllCourses}"> 
+		<button type="submit">Show all Courses</button>
+    </form>
+    <br> 
+     <form action="#" method="post" th:action="@{/findCourseById}" th:object="${courseById}">
+    	<input type="text" th:field="*{courseId}"> 
+		<button type="submit">Find by id</button>
+    </form>
+    <br> 
+	<form action="#" method="post" th:action="@{/findCourseByShortTitle}" th:object="${courseByShortTitle}">
+    	<input type="text" th:field="*{shortTitle}"> 
+		<button type="submit">Find by ShortTitle</button>
+    </form>
+    <br>
+    <form action="#" method="post" th:action="@{/backToWelcome}">
+    	<button type="submit">BACK</button>
+    </form>	
+</body>
+</html>
