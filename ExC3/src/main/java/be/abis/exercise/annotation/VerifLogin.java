@@ -1,4 +1,4 @@
-package be.exercise.annotation;
+package be.abis.exercise.annotation;
 
 import java.lang.annotation.Retention;
 
